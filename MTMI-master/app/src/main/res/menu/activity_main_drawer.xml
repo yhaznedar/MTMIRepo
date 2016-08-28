@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_camera"
+            android:icon="@drawable/ic_directions_car_black_24dp"
+            android:title="Araçlarım" />
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/ic_notifications_active_black_24dp"
+            android:title="Hatırlatma Ayarları" />
+        <item
+            android:id="@+id/nav_slideshow"
+            android:icon="@drawable/ic_person_black_24dp"
+            android:title="Kullanıcı Ayarları" />
+
+
+    </group>
+
+    <item android:title="Görüş Bildir">
+        <menu>
+
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_send_black_24dp"
+                android:title="Uygulamayı Oyla" />
+        </menu>
+    </item>
+
+</menu>
