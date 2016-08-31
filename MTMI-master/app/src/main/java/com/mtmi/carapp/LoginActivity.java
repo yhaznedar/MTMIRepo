@@ -144,7 +144,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         }
 
-        else
+        else //internet yoksa
         {
 
             Intent hata=new Intent(this,hataActivity.class);
