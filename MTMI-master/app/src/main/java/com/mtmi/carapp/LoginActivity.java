@@ -1,7 +1,9 @@
 package com.mtmi.carapp;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
@@ -75,6 +77,25 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         });
     }
 
+    public boolean internetErisimi() {
+
+        ConnectivityManager conMgr = (ConnectivityManager) getSystemService (Context.CONNECTIVITY_SERVICE);
+
+        if (conMgr.getActiveNetworkInfo() != null
+
+                && conMgr.getActiveNetworkInfo().isAvailable()
+
+                && conMgr.getActiveNetworkInfo().isConnected()) {
+
+            return true;
+
+        } else {
+
+            return false;
+
+        }
+
+    }
 
 
 
@@ -114,13 +135,20 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
 
 
-        if (cancel !=true)
+        if (cancel !=true && internetErisimi())
         {
             Toast.makeText(this,"Giriş yapılıyor...",Toast.LENGTH_SHORT).show();
             Intent mesajIntent= new Intent(this, MainActivity.class);
             mesajIntent.putExtra(MAILKEY,email);
             startActivity(mesajIntent);
 
+        }
+
+        else
+        {
+
+            Intent hata=new Intent(this,hataActivity.class);
+            startActivity(hata);
         }
 
 
