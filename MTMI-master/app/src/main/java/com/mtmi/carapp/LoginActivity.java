@@ -35,7 +35,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     public EditText mEmailView;
     public EditText mPasswordView;
-    private ImageView imageView;
+    public ImageView imageView;
+
     public final static String MAILKEY="E-posta";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +76,22 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 attemptLogin();
             }
         });
+
+
+
+        TextView mSignUpView= (TextView) findViewById(R.id.signUpGit);
+        mSignUpView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent uyeolagit=new Intent(LoginActivity.this,SignUp.class);
+                startActivity(uyeolagit);
+            }
+        });
+
+
+
+
     }
 
     public boolean internetErisimi() {
