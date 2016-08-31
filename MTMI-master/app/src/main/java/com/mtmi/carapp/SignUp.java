@@ -30,7 +30,7 @@ public class SignUp extends AppCompatActivity {
             //veritabanı işlemleri
             }
         });
-
+        //erenin iş
 
 
 
