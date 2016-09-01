@@ -1,6 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="15dp">
+    <!--textviewler çok sola yapışık olduğu için margin
+     ile yazıları öteledim Proje Mühendisi K.B.-->
 
-</LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Araç Sayısı: "
+        android:id="@+id/textviewAracSayisi"
+        android:textSize="@dimen/textview_aracekle"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberSigned"
+        android:ems="10"
+        android:id="@+id/edittextAracSayi"
+        android:layout_alignBottom="@+id/textviewAracSayisi"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:textSize="@dimen/textview_aracekle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Plaka: "
+        android:id="@+id/textviewAracPlakasi"
+        android:layout_below="@+id/textviewAracSayisi"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/edittextAracPlaka"
+        android:ems="10"
+        android:layout_above="@+id/textviewAracMarka"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Marka: "
+        android:textSize="@dimen/textview_aracekle"
+        android:id="@+id/textviewAracMarka"
+        android:layout_below="@+id/textviewAracPlakasi"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/edittextMarka"
+        android:ems="10"
+        android:layout_above="@+id/textviewModelYili"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Model Yılı: "
+        android:textSize="@dimen/textview_aracekle"
+        android:id="@+id/textviewModelYili"
+        android:layout_below="@+id/textviewAracMarka"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberSigned"
+        android:ems="10"
+        android:id="@+id/edittextModelYili"
+        android:layout_alignBottom="@+id/textviewModelYili"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Araç Türü: "
+        android:id="@+id/textviewAracTuru"
+        android:layout_below="@+id/textviewModelYili"
+        android:layout_alignParentStart="true"
+        android:textSize="@dimen/textview_aracekle"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/edittextAracTuru"
+        android:layout_alignBottom="@+id/textviewAracTuru"
+        android:ems="10"
+        android:layout_alignStart="@+id/edittextModelYili" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kullanım Amacı: "
+        android:id="@+id/textviewKullanimAmaci"
+        android:layout_below="@+id/edittextAracTuru"
+        android:layout_alignParentStart="true"
+        android:textSize="@dimen/textview_aracekle"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/edittextKullanimAmaci"
+        android:layout_alignBottom="@+id/textviewKullanimAmaci"
+        android:layout_toEndOf="@+id/textviewKullanimAmaci"
+        android:ems="10"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Seri No: "
+        android:id="@+id/textviewSeriNo"
+        android:layout_below="@+id/textviewKullanimAmaci"
+        android:layout_alignParentStart="true"
+        android:textSize="@dimen/textview_aracekle"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/edittextSeriNo_1"
+        android:layout_alignBottom="@+id/textviewSeriNo"
+        android:layout_alignStart="@+id/edittextAracTuru"
+        android:ems="2"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberSigned"
+        android:ems="5"
+        android:id="@+id/edittextSeriNo_2"
+        android:layout_alignTop="@+id/edittextSeriNo_1"
+        android:layout_toEndOf="@+id/textviewKullanimAmaci" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Son Sigorta Tarihi: "
+        android:textSize="@dimen/textview_aracekle"
+        android:id="@+id/textviewSonSigortaTarihi"
+        android:layout_below="@+id/textviewSeriNo"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="9"
+        android:id="@+id/edittextSonSigortaTarihi"
+        android:layout_alignBottom="@+id/textviewSonSigortaTarihi"
+        android:layout_toRightOf="@+id/textviewSonSigortaTarihi" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kaydet"
+            android:layout_weight="1"
+            android:id="@+id/buttonKaydet"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_gravity="bottom" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Temizle"
+            android:layout_weight="1"
+            android:id="@+id/buttonTemizle"
+            android:layout_alignParentBottom="true"
+            android:layout_alignEnd="@+id/edittextSonSigortaTarihi"
+            android:layout_gravity="bottom" />
+    </LinearLayout>
+
+
+</RelativeLayout>
