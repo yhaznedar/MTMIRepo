@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "852425430078",
+    "firebase_url": "https://carproje-2b4e2.firebaseio.com",
+    "project_id": "carproje-2b4e2",
+    "storage_bucket": "carproje-2b4e2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:852425430078:android:c3b4666b5c3678f8",
+        "android_client_info": {
+          "package_name": "com.mtmi.carapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "852425430078-7vkn57k2c96j4gl6brjhr7vceojkcqdu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mtmi.carapp",
+            "certificate_hash": "2354E0EF74FF0BB5500A15EF20D53F49ADD060EB"
+          }
+        },
+        {
+          "client_id": "852425430078-ecfgirj3nm10a3lajjim9le1urdjoqfl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0c_gkZjwnlGCl5ThLrbEIDYl63nDQt1g"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "852425430078-ecfgirj3nm10a3lajjim9le1urdjoqfl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
