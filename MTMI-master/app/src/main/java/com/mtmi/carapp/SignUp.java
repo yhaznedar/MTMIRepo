@@ -30,7 +30,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     private EditText edittextSifre;
     private EditText edittextSifreTekrar;
     private EditText edittextDogumGunu;
-    private TextView textViewLogin;
+
 
     private ProgressDialog progressDialog;
 
@@ -60,12 +60,12 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         edittextMail = (EditText) findViewById(R.id.edittextMail);
         edittextSifre = (EditText) findViewById(R.id.edittextSifre);
         edittextSifreTekrar = (EditText) findViewById(R.id.edittextSifreTekrar);
-        edittextDogumGunu = (EditText) findViewById(R.id.edittextDogumGunu);
-        textViewLogin = (TextView) findViewById(R.id.textViewLogin);
+        edittextDogumGunu = (EditText) findViewById(R.id.dgmTrh);
+
 
 
         buttonKaydet.setOnClickListener(this);
-        textViewLogin.setOnClickListener(this);
+
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client2 = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
@@ -135,12 +135,12 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             registerUser();
 
         }
-        if (v == textViewLogin) {
+       /* if (v == textViewLogin) {
 
             Intent uyeolagit=new Intent(SignUp.this,LoginActivity.class);
             startActivity(uyeolagit);
             //will open login activity here
-        }
+        }*/
 
 
     }
@@ -187,7 +187,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
 }
 
 
-    }
+
 
 
 
