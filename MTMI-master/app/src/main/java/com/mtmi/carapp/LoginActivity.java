@@ -1,6 +1,7 @@
 package com.mtmi.carapp;
 
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,6 +18,8 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -35,9 +38,6 @@ import java.util.List;
  */
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
 
-
-
-
     SharedPreferences preferences;
     //preferences için bir nesne tanımlıyorum.
     SharedPreferences.Editor editor;
@@ -49,8 +49,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     public final static String MAILKEY="E-posta";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+
+
 
         mEmailView = (EditText) findViewById(R.id.email);
         imageView = (ImageView) findViewById(R.id.imageView);
@@ -218,7 +223,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
-        return password.length() > 4;
+        return password.length() > 6;
     }
 
     /**
