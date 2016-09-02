@@ -1,19 +1,25 @@
 package com.mtmi.carapp;
 
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.SystemClock;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -32,7 +38,10 @@ import java.util.List;
  */
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
 
-
+    SharedPreferences preferences;
+    //preferences için bir nesne tanımlıyorum.
+    SharedPreferences.Editor editor;
+    //preferences içerisine bilgi girmek için tanımlama
     public EditText mEmailView;
     public EditText mPasswordView;
     public ImageView imageView;
@@ -40,14 +49,17 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     public final static String MAILKEY="E-posta";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+
 
 
         mEmailView = (EditText) findViewById(R.id.email);
         imageView = (ImageView) findViewById(R.id.imageView);
         mPasswordView = (EditText) findViewById(R.id.password);
-
 
         mEmailView.setOnClickListener(new OnClickListener() {
             @Override
@@ -73,6 +85,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 attemptLogin();
             }
         });
@@ -92,6 +105,29 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+       /* preferences= getSharedPreferences("profile", Context.MODE_PRIVATE);
+        editor=preferences.edit();
+        String emailbilgi=preferences.getString("eposta","");
+        String sifrebilgi=preferences.getString("sifre","");
+        mEmailView.setText(emailbilgi);
+        mPasswordView.setText(sifrebilgi);*/
+
+
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        /*editor.clear();
+        editor.apply();
+        mEmailView.setText("");
+        mPasswordView.setText("");*/
     }
 
     public boolean internetErisimi() {
@@ -152,18 +188,26 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
 
 
-        if (cancel !=true && internetErisimi())
+        if (internetErisimi())
         {
-            Toast.makeText(this,"Giriş yapılıyor...",Toast.LENGTH_SHORT).show();
-            Intent mesajIntent= new Intent(this, MainActivity.class);
-            mesajIntent.putExtra(MAILKEY,email);
-            startActivity(mesajIntent);
+
+            if (cancel !=true)
+            {
+                Toast.makeText(this, "Giriş yapılıyor...", Toast.LENGTH_SHORT).show();
+                Intent mesajIntent = new Intent(this, MainActivity.class);
+                mesajIntent.putExtra(MAILKEY, email);
+                startActivity(mesajIntent);
+            }
 
         }
 
+
+
         else //internet yoksa
         {
-
+           /* editor.putString("eposta", mEmailView.getText().toString());
+            editor.putString("sifre", mPasswordView.getText().toString());
+            editor.commit();*/
             Intent hata=new Intent(this,hataActivity.class);
             startActivity(hata);
         }
@@ -179,7 +223,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
-        return password.length() > 4;
+        return password.length() > 6;
     }
 
     /**
