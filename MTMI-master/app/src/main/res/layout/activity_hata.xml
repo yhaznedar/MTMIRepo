@@ -20,4 +20,14 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="61dp"
         android:textColor="@color/colorPrimary"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Hay aksi! Bir şeyler ters gitti."
+        android:id="@+id/mesajHata"
+        android:layout_marginBottom="20dp"
+        android:layout_above="@+id/yenidenDene"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

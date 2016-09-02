@@ -23,14 +23,14 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class SignUp extends AppCompatActivity implements View.OnClickListener {
-    private Button buttonKaydet;
-    private EditText edittextAd;
-    private EditText edittextMail;
-    private EditText edittextSifre;
-    private EditText edittextSifreTekrar;
-    private EditText edittextDogumGunu;
-    private TextView textViewLogin;
+public class SignUp extends AppCompatActivity  {
+    public Button buttonKaydet;
+    public EditText mPersonName;
+    public EditText mEmailView;
+    public EditText mPasswordView;
+    public EditText mPasswordView2;
+    public EditText mBirthDate;
+    public TextView textViewLogin;
 
     private ProgressDialog progressDialog;
 
@@ -52,96 +52,117 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.activity_sign_up);
 
         firebaseAuth = FirebaseAuth.getInstance();
-
         progressDialog = new ProgressDialog(this);
-
         buttonKaydet = (Button) findViewById(R.id.buttonKaydet);
-        edittextAd = (EditText) findViewById(R.id.edittextAd);
-        edittextMail = (EditText) findViewById(R.id.edittextMail);
-        edittextSifre = (EditText) findViewById(R.id.edittextSifre);
-        edittextSifreTekrar = (EditText) findViewById(R.id.edittextSifreTekrar);
-        edittextDogumGunu = (EditText) findViewById(R.id.edittextDogumGunu);
-        textViewLogin = (TextView) findViewById(R.id.textViewLogin);
+        mPersonName = (EditText) findViewById(R.id.edittextAd);
+        mEmailView = (EditText) findViewById(R.id.edittextMail);
+        mPasswordView = (EditText) findViewById(R.id.edittextSifre);
+        mPasswordView2 = (EditText) findViewById(R.id.edittextSifreTekrar);
+        mBirthDate = (EditText) findViewById(R.id.dgmTrh);
+        textViewLogin= (TextView) findViewById(R.id.textViewLogin);
+        textViewLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                Intent uyeolagit=new Intent(SignUp.this,LoginActivity.class);
+                startActivity(uyeolagit);
+            }
+        });
 
-        buttonKaydet.setOnClickListener(this);
-        textViewLogin.setOnClickListener(this);
+        buttonKaydet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                registerUser();
+            }
+        });
+
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client2 = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
-    private void registerUser() {
-        String name = edittextAd.getText().toString().trim();
-        String mail = edittextMail.getText().toString().trim();
-        String sifre = edittextSifre.getText().toString().trim();
-        String sifretekrar = edittextSifreTekrar.getText().toString().trim();
-        String dogumgunu = edittextDogumGunu.getText().toString().trim();
+    private void registerUser()
+    {
+        String name = mPersonName.getText().toString().trim();
+        String mail = mEmailView.getText().toString().trim();
+        String sifre = mPasswordView.getText().toString().trim();
+        String sifretekrar = mPasswordView2.getText().toString().trim();
+        String dogumgunu = mBirthDate.getText().toString().trim();
 
+
+        mPersonName.setError(null);
+        mEmailView.setError(null);
+        mPasswordView.setError(null);
+        mPasswordView2.setError(null);
+        boolean cancel2=false;
+        View focusView=null;
 
         if (TextUtils.isEmpty(name)) {
-            Toast.makeText(this, "lütfen isminizi giriniz.", Toast.LENGTH_SHORT).show();
-            return;
-        }
+            mPersonName.setError(getString(R.string.error_field_required));
+            focusView = mPersonName;
+            cancel2 = true;}
+
 
         if (TextUtils.isEmpty(mail)) {
-            Toast.makeText(this, "lütfen mailinizi giriniz.", Toast.LENGTH_SHORT).show();
-            return;
-        }
+            mEmailView.setError(getString(R.string.error_field_required));
+            focusView = mEmailView;
+            cancel2 = true;}
+        else if (!isPasswordValid(mail)) {
+            mEmailView.setError(getString(R.string.error_invalid_email));
+            focusView = mEmailView;
+            cancel2 = true;}
 
         if (TextUtils.isEmpty(sifre)) {
-            Toast.makeText(this, "lütfen sifrenizi giriniz.", Toast.LENGTH_SHORT).show();
-            return;
-        }
+                mPasswordView.setError(getString(R.string.error_field_required));
+                focusView = mPasswordView;
+                cancel2 = true;}
+
+        else if (!isPasswordValid(sifre)) {
+            mPasswordView.setError(getString(R.string.error_invalid_password));
+            focusView = mPasswordView;
+            cancel2 = true;}
+
 
         if (TextUtils.isEmpty(sifretekrar)) {
-            Toast.makeText(this, "lütfen sifrenizi giriniz.", Toast.LENGTH_SHORT).show();
-            return;
+
+            mPasswordView2.setError(getString(R.string.error_field_required));
+            focusView = mPasswordView2;
+            cancel2 = true;}
+        else if (!isPasswordValid(sifre)) {
+            mPasswordView2.setError(getString(R.string.error_invalid_password));
+            focusView = mPasswordView2;
+            cancel2 = true;}
+
+        if(!sifre.equals(sifretekrar))
+        {
+            mPasswordView.setError(getString(R.string.error_matching));
+            focusView=mPasswordView;
+            cancel2=true;
         }
 
-        if (TextUtils.isEmpty(dogumgunu)) {
-            Toast.makeText(this, "lütfen d.tarihinizi giriniz.", Toast.LENGTH_SHORT).show();
-            return;
-        }
+        if (cancel2 !=true)
 
-        progressDialog.setMessage("üye kaydı yapılıyor..");
-        progressDialog.show();
+        {
 
-        firebaseAuth.createUserWithEmailAndPassword(mail, sifre)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(SignUp.this, "kayıt başarılı.", Toast.LENGTH_SHORT).show();
+            progressDialog.setMessage("İşlem yapılıyor...");
+            progressDialog.show();
 
-                            Intent uyeolagit=new Intent(SignUp.this,LoginActivity.class);
-                            startActivity(uyeolagit);
+            firebaseAuth.createUserWithEmailAndPassword(mail, sifre)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                progressDialog.dismiss();
+                                Toast.makeText(SignUp.this, "Kayıt başarıyla tamamlandı!", Toast.LENGTH_SHORT).show();
 
+                                //burada login işlemi yapılacak.
 
-                        } else {
-                            Toast.makeText(SignUp.this, "kayıt başarısız..tekrar dene.", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(SignUp.this, "Kayıt olma işlemi başarız. Lütfen tekrar deneyiniz.", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
-                });
-
-    }
-
-
-
-    @Override
-    public void onClick(View v) {
-
-        if (v == buttonKaydet) {
-            registerUser();
-
+                    });
         }
-        if (v == textViewLogin) {
-
-            Intent uyeolagit=new Intent(SignUp.this,LoginActivity.class);
-            startActivity(uyeolagit);
-            //will open login activity here
-        }
-
 
     }
 
@@ -184,5 +205,24 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         AppIndex.AppIndexApi.end(client2, viewAction);
         client2.disconnect();
     }
+    private boolean isEmailValid(String mail) {
+        //TODO: Replace this with your own logic
+        //selam
+        return mail.contains("@");
+    }
+
+    private boolean isPasswordValid(String sifre) {
+        //TODO: Replace this with your own logic
+        return sifre.length() > 5;
+    }
+
 }
+
+
+
+
+
+
+
+
 
