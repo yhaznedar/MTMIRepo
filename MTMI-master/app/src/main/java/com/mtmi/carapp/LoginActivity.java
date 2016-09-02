@@ -223,14 +223,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
-        return password.length() > 6;
+        return password.length() > 5;
     }
 
-    /**
-     * Shows the progress UI and hides the login form.
-     */
 
-        protected void onPostExecute(final Boolean success) {
+    protected void onPostExecute(final Boolean success) {
 
             if (success) {
                 finish();
