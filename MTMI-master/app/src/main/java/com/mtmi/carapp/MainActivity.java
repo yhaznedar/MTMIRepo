@@ -1,6 +1,7 @@
 package com.mtmi.carapp;
 
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,10 +17,22 @@ import android.view.MenuItem;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    String[] car_name;
+    TypedArray car_pic;
+    String[] status;
+    String[] contactType;
+
+    List<RowItem> rowItems;
+    ListView carListview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +58,23 @@ public class MainActivity extends AppCompatActivity
         String mail=intent.getStringExtra(LoginActivity.MAILKEY);
         TextView gelenMail= (TextView)hView.findViewById(R.id.gelenMail);
         gelenMail.setText(mail);
+
+
+        rowItems = new ArrayList<RowItem>();
+        car_name=getResources().getStringArray(R.array.CarName);
+        car_pic=getResources().obtainTypedArray(R.array.CarPicture);
+        status= getResources().getStringArray(R.array.status);
+        contactType= getResources().getStringArray(R.array.ConcactType);
+
+        for(int i=0;i<car_name.length;i++){
+            RowItem item = new RowItem(car_name[i],car_pic.getResourceId(i,-1),status[i],contactType[i]);
+            rowItems.add(item);
+        }
+
+        carListview = (ListView) findViewById(R.id.listCar);
+        RowAdapter adapter = new RowAdapter(this,rowItems);
+        carListview.setAdapter(adapter);
+
 
 
     }
