@@ -94,11 +94,11 @@
         android:text="Kaydet"
         android:id="@+id/buttonKaydet"
         android:layout_gravity="center_horizontal"
-        android:layout_below="@+id/dgmTrh"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="25dp"
         android:background="@drawable/roundedbutton"
-        android:drawablePadding="10dp"/>
+        android:drawablePadding="10dp"
+        android:layout_below="@+id/dgmTrh"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -106,8 +106,7 @@
 
         android:text="Üye misiniz? Hemen giriş yapın!"
         android:id="@+id/textViewLogin"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
         android:textSize="15dp"
-        android:layout_marginTop="10dp" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

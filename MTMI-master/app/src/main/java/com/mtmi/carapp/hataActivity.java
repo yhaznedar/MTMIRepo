@@ -73,7 +73,7 @@ public class hataActivity extends AppCompatActivity {
 
         final AlertDialog alertDialog=new AlertDialog.Builder(this).create();
         alertDialog.setTitle("Bağlantı hatası");
-        alertDialog.setMessage("İnternet erişiminde bir problem tespit ettik. Bağlantınızı kontrol ettikten sonra tekrar deneyiniz.");
+        alertDialog.setMessage("Sorun hala devam ediyor. Lütfen bağlantınızın olduğundan emin olunuz.");
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE ,"Tamam", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {

@@ -4,6 +4,7 @@ package com.mtmi.carapp;
 import android.animation.ValueAnimator;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -24,6 +25,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -66,30 +68,32 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         imageView = (ImageView) findViewById(R.id.imageView);
         mPasswordView = (EditText) findViewById(R.id.password);
 
-        mEmailView.setOnClickListener(new OnClickListener() {
+       /* mEmailView.setOnClickListener(new OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
 
                 imageView.getLayoutParams().height = 120;
                 imageView.getLayoutParams().width = 120;
+
             }
         });
 
-        mPasswordView.setOnClickListener(new OnClickListener() {
+        mEmailView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void onClick(View view) {
-
-                imageView.getLayoutParams().height = 120;
-                imageView.getLayoutParams().width = 120;
+            public void onFocusChange(View v, boolean hasFocus)
+            {
+                imageView.getLayoutParams().height = 180;
+                imageView.getLayoutParams().width = 180;
             }
-        });
-
+        });*/
 
         mEmailSignInButton= (Button) findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                //InputMethodManager imm = (InputMethodManager)getSystemService(Service.INPUT_METHOD_SERVICE); //hide keyboard
+                //imm.hideSoftInputFromWindow(mEmailSignInButton.getWindowToken(), 0);
                 attemptLogin();
             }
         });
@@ -213,7 +217,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
         //selam
-        return email.contains("@");
+        return email.contains("@") && email.contains(".com");
     }
 
     private boolean isPasswordValid(String password) {
@@ -238,7 +242,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     public void onLoaderReset(Loader<Cursor> loader) {
 
     }
-
 
 
 

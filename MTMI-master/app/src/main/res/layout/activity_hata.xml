@@ -25,9 +25,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Hay aksi! Bir şeyler ters gitti."
+        android:text="İnternet bağlantıısı bulunamadı. Bağlantınızı kontrol edin veya yeniden deneyin."
         android:id="@+id/mesajHata"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="39dp"
+        android:textAlignment="center"
         android:layout_above="@+id/yenidenDene"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentEnd="true"
+        android:textSize="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Hay aksi!"
+        android:id="@+id/textView"
+        android:layout_marginBottom="40dp"
+        android:layout_above="@+id/mesajHata"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:textSize="25dp" />
 </RelativeLayout>

@@ -117,6 +117,11 @@ public class SignUp extends AppCompatActivity  {
                 focusView = mPasswordView;
                 cancel2 = true;}
 
+        if (TextUtils.isEmpty(dogumgunu)) {
+            mBirthDate.setError(getString(R.string.error_field_required));
+            focusView = mBirthDate;
+            cancel2 = true;}
+
         else if (!isPasswordValid(sifre)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
