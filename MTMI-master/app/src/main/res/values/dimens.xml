@@ -6,5 +6,6 @@
     <dimen name="nav_header_vertical_spacing">16dp</dimen>
     <dimen name="nav_header_height">160dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="textview_aracekle">24sp</dimen> <!--activity_aracekle ekranındaki textsize 24sp belirledim. Proje Mühendisi K.B. -->
+    <dimen name="textview_aracekle">24sp
+    </dimen> <!--activity_aracekle ekranındaki textsize 24sp belirledim. Proje Mühendisi K.B. -->
 </resources>
