@@ -16,4 +16,32 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Hakkımızda</string>
+
+    <string-array name="CarName">
+        <item>Mercedes</item>
+        <item>BMW</item>
+        <item>Ferrari</item>
+        <item>Renault</item>
+    </string-array>
+
+    <string-array name="CarPicture">
+        <item>@drawable/car_pic</item>
+        <item>@drawable/car_pic</item>
+        <item>@drawable/car_pic</item>
+        <item>@drawable/car_pic</item>
+    </string-array>
+
+    <string-array name="status">
+        <item>Ticari</item>
+        <item>Binek</item>
+        <item>bbbbbb</item>
+        <item>aaaaaa</item>
+    </string-array>
+
+    <string-array name="ConcactType">
+        <item>Mobile</item>
+        <item>aaaaaaa</item>
+        <item>ccccccccc</item>
+        <item>ddddddddd</item>
+    </string-array>
 </resources>
