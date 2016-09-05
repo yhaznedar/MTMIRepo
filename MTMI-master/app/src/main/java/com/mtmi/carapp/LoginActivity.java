@@ -285,7 +285,7 @@ public class LoginActivity extends AppCompatActivity {
         }
         cancel2=false;
 
-//kursat
+
     }
 }
 
