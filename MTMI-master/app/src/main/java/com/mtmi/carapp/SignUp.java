@@ -76,6 +76,14 @@ public class SignUp extends AppCompatActivity  {
             }
         });
 
+      //  textViewLogin.setOnClickListener(new View.OnClickListener(){
+//
+        //    @Override
+  //          public void onClick(View v) {
+    //            startActivity(new Intent(this, LoginActivity.class));
+      //      }
+       // });
+
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client2 = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
