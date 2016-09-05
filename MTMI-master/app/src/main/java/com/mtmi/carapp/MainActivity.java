@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity
     List<RowItem> rowItems;
     ListView carListview;
 
+    private FloatingActionButton fab;
+
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
     private GoogleApiClient client;
@@ -61,6 +63,14 @@ public class MainActivity extends AppCompatActivity
         }
 
 
+        fab= (FloatingActionButton) findViewById(R.id.eklebutonu);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AddingCarActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
