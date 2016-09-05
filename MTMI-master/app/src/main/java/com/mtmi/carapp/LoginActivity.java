@@ -230,7 +230,7 @@ public class LoginActivity extends AppCompatActivity {
             EmailView.setError(getString(R.string.error_field_required));
             focusView = EmailView;
             cancel2 = true;
-        } else if (!isPasswordValid(email)) {
+        } else if (!isEmailValid(email)) {
             EmailView.setError(getString(R.string.error_invalid_email));
             focusView = EmailView;
             cancel2 = true;
@@ -246,35 +246,44 @@ public class LoginActivity extends AppCompatActivity {
             cancel2 = true;
         }
 
-        if (internetErisimi() && cancel2 == false)
-        {
-            progressDialog.setMessage("Giriş yapılıyor...");
-            progressDialog.show();
+        if (internetErisimi()) {
+            if (cancel2 == false)
+            {
+                progressDialog.setMessage("Giriş yapılıyor...");
+                progressDialog.show();
 
-        firebaseAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+                firebaseAuth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
 
 
-                            if (task.isSuccessful()) {
-                                //start the profile activity
-                                finish();
-                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                if (task.isSuccessful()) {
+                                    //start the profile activity
+                                    finish();
+                                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                }
+                                else
+                                    Toast.makeText(LoginActivity.this, "Böyle bir kullanıcı bulunamadı.", Toast.LENGTH_LONG).show();
+
+                                progressDialog.dismiss();
                             }
-                            else
-                                Toast.makeText(LoginActivity.this, "Böyle bir kullanıcı bulunamadı.", Toast.LENGTH_LONG).show();
-
-                        progressDialog.dismiss();
-                    }
-                });
+                        });
             }
+
+
+
+
+
+        }
+
         else
 
         {
         Intent hata = new Intent(LoginActivity.this, hataActivity.class);
         startActivity(hata);
         }
+        cancel2=false;
 
 //kursat
     }
