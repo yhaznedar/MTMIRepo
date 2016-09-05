@@ -25,13 +25,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="İnternet bağlantıısı bulunamadı. Bağlantınızı kontrol edin veya yeniden deneyin."
+        android:text="Bir şeyler ters gitti."
         android:id="@+id/mesajHata"
-        android:layout_marginBottom="39dp"
+        android:layout_marginBottom="57dp"
         android:textAlignment="center"
+        android:textSize="16dp"
         android:layout_above="@+id/yenidenDene"
-        android:layout_alignParentEnd="true"
-        android:textSize="16dp" />
+        android:layout_alignStart="@+id/yenidenDene" />
 
     <TextView
         android:layout_width="wrap_content"
