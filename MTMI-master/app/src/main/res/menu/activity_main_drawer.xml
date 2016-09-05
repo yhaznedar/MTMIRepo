@@ -3,15 +3,15 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_car"
             android:icon="@drawable/ic_directions_car_black_24dp"
             android:title="Araçlarım" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_notification"
             android:icon="@drawable/ic_notifications_active_black_24dp"
             android:title="Hatırlatma Ayarları" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_userper"
             android:icon="@drawable/ic_person_black_24dp"
             android:title="Kullanıcı Ayarları" />
 
@@ -22,9 +22,15 @@
         <menu>
 
             <item
-                android:id="@+id/nav_send"
+                android:id="@+id/nav_app_oyla"
                 android:icon="@drawable/ic_send_black_24dp"
                 android:title="Uygulamayı Oyla" />
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_input_black_24dp"
+                android:title="Çıkış Yap" />
+
+
         </menu>
     </item>
 

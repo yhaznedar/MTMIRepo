@@ -52,28 +52,17 @@ import java.util.List;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity {
 
-    public ImageButton buttonGiris;
+    public Button buttonGiris;
     public EditText EmailView;
     public EditText PasswordView;
     public ImageView imageView;
     public TextView TextViewsignUpGit;
+    public boolean cancel2=false;
 
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
-
-
-    SharedPreferences preferences;
-    //preferences için bir nesne tanımlıyorum.
-    SharedPreferences.Editor editor;
-    //preferences içerisine bilgi girmek için tanımlama
-
-    public final static String MAILKEY = "E-posta";
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
     private GoogleApiClient client;
 
     @Override
@@ -88,43 +77,28 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if(firebaseAuth.getCurrentUser() != null){
             //profile activity here
             finish();
-            startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
+            startActivity(new Intent(getApplicationContext(),MainActivity.class));
         }
 
         EmailView = (EditText) findViewById(R.id.email);
         imageView = (ImageView) findViewById(R.id.imageView);
         PasswordView = (EditText) findViewById(R.id.password);
-        buttonGiris=(ImageButton) findViewById(R.id.email_sign_in_button);
+        buttonGiris=(Button) findViewById(R.id.email_sign_in_button);
         TextViewsignUpGit=(TextView)findViewById(R.id.signUpGit);
 
         progressDialog=new ProgressDialog(this);
 
-        buttonGiris.setOnClickListener(this);
-        TextViewsignUpGit.setOnClickListener(this);
 
-
-        EmailView.setOnClickListener(new OnClickListener() {
+        TextViewsignUpGit.setOnClickListener(new OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
-
-                imageView.getLayoutParams().height = 120;
-                imageView.getLayoutParams().width = 120;
-
+            public void onClick(View view) {
+                finish();
+                startActivity(new Intent(LoginActivity.this,SignUp.class));
             }
         });
 
-        PasswordView.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus)
-            {
-                imageView.getLayoutParams().height = 180;
-                imageView.getLayoutParams().width = 180;
-            }
-        });*/
 
-        mEmailSignInButton= (Button) findViewById(R.id.email_sign_in_button);
-        mEmailSignInButton.setOnClickListener(new OnClickListener() {
+        buttonGiris.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -155,14 +129,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client.connect();
-       /* preferences= getSharedPreferences("profile", Context.MODE_PRIVATE);
-        editor=preferences.edit();
-        String emailbilgi=preferences.getString("eposta","");
-        String sifrebilgi=preferences.getString("sifre","");
-        EmailView.setText(emailbilgi);
-        PasswordView.setText(sifrebilgi);*/
-
-
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         Action viewAction = Action.newAction(
@@ -182,10 +148,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        /*editor.clear();
-        editor.apply();
-        EmailView.setText("");
-        PasswordView.setText("");*/
+
     }
 
     public boolean internetErisimi() {
@@ -209,61 +172,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
 
-    public void attemptLogin() {
-
-        // Reset errors.
-        EmailView.setError(null);
-        PasswordView.setError(null);
-
-        // Store values at the time of the login attempt.
-        String email = EmailView.getText().toString();
-        String password = PasswordView.getText().toString();
-        boolean cancel = false;
-        View focusView = null;
-
-        // Check for a valid password, if the user entered one.
-        if (TextUtils.isEmpty(password)) {
-            PasswordView.setError(getString(R.string.error_field_required));
-            focusView = PasswordView;
-            cancel = true;
-        } else if (!isPasswordValid(password)) {
-            PasswordView.setError(getString(R.string.error_invalid_password));
-            focusView = PasswordView;
-            cancel = true;
-        }
 
 
-        // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
-            EmailView.setError(getString(R.string.error_field_required));
-            focusView = EmailView;
-            cancel = true;
-        } else if (!isEmailValid(email)) {
-            EmailView.setError(getString(R.string.error_invalid_email));
-            focusView = EmailView;
-            cancel = true;
-        }
-
-
-        if (internetErisimi()) {
-
-            if (cancel != true) {
-                Toast.makeText(this, "Giriş yapılıyor...", Toast.LENGTH_SHORT).show();
-                Intent mesajIntent = new Intent(this, MainActivity.class);
-                mesajIntent.putExtra(MAILKEY, email);
-                startActivity(mesajIntent);
-            }
-
-        } else //internet yoksa
-        {
-           /* editor.putString("eposta", mailView.getText().toString());
-            editor.putString("sifre", PasswordView.getText().toString());
-            editor.commit();*/
-            Intent hata = new Intent(this, hataActivity.class);
-            startActivity(hata);
-
-        }
-}
 
 
     private boolean isEmailValid(String email) {
@@ -279,13 +189,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
 
-        if (success) {
-            finish();
-        } else {
-            PasswordView.setError(getString(R.string.error_incorrect_password));
-            PasswordView.requestFocus();
-        }
-    }
+
 
     protected void onCancelled() {
 
@@ -312,63 +216,67 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         AppIndex.AppIndexApi.end(client, viewAction);
         client.disconnect();
     }
-    private void UserLogin(){
-        String email= EmailView.getText().toString().trim();
-        String password= PasswordView.getText().toString().trim();
+    private void UserLogin() {
+        String email = EmailView.getText().toString().trim();
+        String password = PasswordView.getText().toString().trim();
 
         EmailView.setError(null);
         PasswordView.setError(null);
 
-        boolean cancel2=false;
-        View focusView=null;
+
+        View focusView = null;
 
         if (TextUtils.isEmpty(email)) {
             EmailView.setError(getString(R.string.error_field_required));
             focusView = EmailView;
-            cancel2 = true;}
-        else if (!isPasswordValid(email)) {
+            cancel2 = true;
+        } else if (!isPasswordValid(email)) {
             EmailView.setError(getString(R.string.error_invalid_email));
             focusView = EmailView;
-            cancel2 = true;}
+            cancel2 = true;
+        }
 
         if (TextUtils.isEmpty(password)) {
             PasswordView.setError(getString(R.string.error_field_required));
             focusView = PasswordView;
-            cancel2 = true;}
-
-        progressDialog.setMessage("Giriş yapılıyor bekleyin...");
-        progressDialog.show();
-
-        firebaseAuth.signInWithEmailAndPassword(email,password)
-            .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-
-                    if(task.isSuccessful()){
-                        //start the profile activity
-                        finish();
-                        startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
-                    }
-
-                    else{
-                        Toast.makeText(LoginActivity.this,"Böyle bir kullanıcı yok",Toast.LENGTH_LONG).show();
-
-
-                    }
-                    progressDialog.dismiss();
-                }
-            });
-    }
-
-    @Override
-    public void onClick(View v) {
-        if(v==buttonGiris){
-            UserLogin();
+            cancel2 = true;
+        } else if (!isPasswordValid(password)) {
+            PasswordView.setError(getString(R.string.error_invalid_password));
+            focusView = PasswordView;
+            cancel2 = true;
         }
-        if(v==TextViewsignUpGit){
-            finish();
-            startActivity(new Intent(this,SignUp.class));
+
+        if (internetErisimi() && cancel2 == false)
+        {
+            progressDialog.setMessage("Giriş yapılıyor...");
+            progressDialog.show();
+
+        firebaseAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+
+                            if (task.isSuccessful()) {
+                                //start the profile activity
+                                finish();
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            }
+                            else
+                                Toast.makeText(LoginActivity.this, "Böyle bir kullanıcı bulunamadı.", Toast.LENGTH_LONG).show();
+
+                        progressDialog.dismiss();
+                    }
+                });
+            }
+        else
+
+        {
+        Intent hata = new Intent(LoginActivity.this, hataActivity.class);
+        startActivity(hata);
         }
+
+
     }
 }
 
