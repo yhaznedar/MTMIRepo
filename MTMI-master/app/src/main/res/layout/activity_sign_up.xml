@@ -31,7 +31,9 @@
         android:fontFamily="sans-serif-light"
         android:layout_below="@+id/imgResim"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="38dp" />
+        android:layout_marginTop="38dp"
+        android:drawablePadding="10dp"
+        android:drawableLeft="@drawable/userlogin"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -43,7 +45,9 @@
         android:layout_gravity="center_horizontal"
         android:fontFamily="sans-serif-light"
         android:layout_below="@+id/edittextAd"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:drawableLeft="@drawable/mail"
+        android:drawablePadding="10dp"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -54,7 +58,9 @@
         android:layout_gravity="center_horizontal"
         android:fontFamily="sans-serif-light"
         android:layout_below="@+id/edittextMail"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:drawableLeft="@drawable/password"
+        android:drawablePadding="10dp"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -65,7 +71,9 @@
         android:layout_gravity="center_horizontal"
         android:fontFamily="sans-serif-light"
         android:layout_below="@+id/edittextSifre"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:drawableLeft="@drawable/password"
+        android:drawablePadding="10dp"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -75,17 +83,22 @@
         android:id="@+id/dgmTrh"
         android:inputType="date"
         android:layout_below="@+id/edittextSifreTekrar"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:drawableLeft="@drawable/calendar"
+        android:drawablePadding="10dp"/>
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:textColor="@color/colorPrimary"
         android:text="Kaydet"
         android:id="@+id/buttonKaydet"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/roundedbutton"
+        android:drawablePadding="10dp"
         android:layout_below="@+id/dgmTrh"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp" />
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -93,8 +106,7 @@
 
         android:text="Üye misiniz? Hemen giriş yapın!"
         android:id="@+id/textViewLogin"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
         android:textSize="15dp"
-        android:layout_marginTop="10dp" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
