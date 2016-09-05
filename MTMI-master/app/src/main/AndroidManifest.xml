@@ -28,8 +28,10 @@
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".hataActivity" />
-        <activity android:name=".SignUp" />
+        <activity android:name=".hataActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".SignUp"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
