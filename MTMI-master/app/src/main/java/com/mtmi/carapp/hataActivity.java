@@ -1,5 +1,6 @@
 package com.mtmi.carapp;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -72,7 +73,7 @@ public class hataActivity extends AppCompatActivity {
 
         final AlertDialog alertDialog=new AlertDialog.Builder(this).create();
         alertDialog.setTitle("Bağlantı hatası");
-        alertDialog.setMessage("İnternet erişiminde bir problem tespit ettik. Bağlantınızı kontrol ettikten sonra tekrar deneyiniz.");
+        alertDialog.setMessage("Lütfen internet bağlantınızın olduğundan emin olunuz.");
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE ,"Tamam", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -83,4 +84,7 @@ public class hataActivity extends AppCompatActivity {
 
 
     }
+
+
+
 }
