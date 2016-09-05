@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -49,6 +51,8 @@ public class SignUp extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_sign_up);
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -117,6 +121,11 @@ public class SignUp extends AppCompatActivity  {
                 focusView = mPasswordView;
                 cancel2 = true;}
 
+        if (TextUtils.isEmpty(dogumgunu)) {
+            mBirthDate.setError(getString(R.string.error_field_required));
+            focusView = mBirthDate;
+            cancel2 = true;}
+
         else if (!isPasswordValid(sifre)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
@@ -155,7 +164,6 @@ public class SignUp extends AppCompatActivity  {
                                 progressDialog.dismiss();
                                 Toast.makeText(SignUp.this, "Kayıt başarıyla tamamlandı!", Toast.LENGTH_SHORT).show();
 
-                                //burada login işlemi yapılacak.
 
                             } else {
                                 Toast.makeText(SignUp.this, "Kayıt olma işlemi başarız. Lütfen tekrar deneyiniz.", Toast.LENGTH_SHORT).show();
@@ -208,7 +216,7 @@ public class SignUp extends AppCompatActivity  {
     private boolean isEmailValid(String mail) {
         //TODO: Replace this with your own logic
         //selam
-        return mail.contains("@");
+        return mail.contains("@") && mail.contains(".com");
     }
 
     private boolean isPasswordValid(String sifre) {

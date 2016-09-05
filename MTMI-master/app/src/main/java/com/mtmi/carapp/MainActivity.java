@@ -1,5 +1,6 @@
 package com.mtmi.carapp;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -101,5 +102,11 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+
     }
+
+    public static void startThisActivity(Activity activity) {
+        activity.startActivity(new Intent(activity, MainActivity.class));
+    }
+
 }
