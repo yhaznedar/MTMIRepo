@@ -12,7 +12,6 @@
     <string name="error_field_required">Bu alana giriş zorunludur!</string>
     <string name="error_matching">"Şifreler birbirleriyle uyuşmuyor.</string>
     <string name="title_activity_main">Menü</string>
-
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
