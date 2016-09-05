@@ -164,6 +164,8 @@ public class SignUp extends AppCompatActivity  {
                             if (task.isSuccessful()) {
                                 progressDialog.dismiss();
                                 Toast.makeText(SignUp.this, "Kayıt başarıyla tamamlandı!", Toast.LENGTH_SHORT).show();
+                                Intent girisgit=new Intent(SignUp.this,MainActivity.class);
+                                startActivity(girisgit);
 
 
                             } else {

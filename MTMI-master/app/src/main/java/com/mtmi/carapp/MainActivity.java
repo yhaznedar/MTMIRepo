@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -24,6 +25,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -142,11 +144,18 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_car) {
+        if (id == R.id.nav_car)
+        {
 
-        } else if (id == R.id.nav_notification ){
+        }
 
-        } else if (id == R.id.nav_userper) {
+        else if (id == R.id.nav_notification )
+
+        {
+
+        }
+        else if (id == R.id.nav_userper)
+        {
 
 
         } else if (id == R.id.nav_logout)
@@ -166,7 +175,20 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.nav_app_oyla)
         {
 
+
+                    try
+                    {
+                        Intent viewIntent = new Intent("android.intent.action.VIEW",Uri.parse("https://play.google.com/store/apps/details?id=com.spotify.music&hl=tr"));
+                        startActivity(viewIntent);
+                    }
+                    catch(Exception e)
+                    {
+                        Toast.makeText(getApplicationContext(),"Google Play Mağazasına bağlanılamadı.", Toast.LENGTH_LONG).show();
+                        e.printStackTrace();
+                    }
         }
+
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
