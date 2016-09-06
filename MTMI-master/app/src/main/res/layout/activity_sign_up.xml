@@ -91,7 +91,7 @@
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:textColor="@color/colorPrimary"
-        android:text="Kaydet"
+        android:text="KAYDET"
         android:id="@+id/buttonKaydet"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="25dp"
@@ -103,10 +103,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:text="Üye misiniz? Hemen giriş yapın!"
+        android:text="Hesabınız var mı? Hemen giriş yapın!"
         android:id="@+id/textViewLogin"
         android:textSize="15dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp"
+        android:layout_marginBottom="2dp"
+        android:layout_below="@+id/buttonKaydet"/>
 </RelativeLayout>
