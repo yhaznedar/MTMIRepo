@@ -9,6 +9,7 @@ import android.net.ConnectivityManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,8 +34,19 @@ public class hataActivity extends AppCompatActivity {
                 if (internetErisimi())
 
                 {
-                    Intent log = new Intent(hataActivity.this, LoginActivity.class);
-                    startActivity(log);
+                    Intent intentActivity=getIntent();
+
+                    if(intentActivity.getStringExtra("a")=="LoginActivity")
+                    {
+                        Intent log = new Intent(hataActivity.this, LoginActivity.class);
+                        startActivity(log);
+                    }
+                    else {
+
+                        Intent sign = new Intent(hataActivity.this, SignUp.class);
+                        startActivity(sign);
+                    }
+
                 }
                 else
                 {

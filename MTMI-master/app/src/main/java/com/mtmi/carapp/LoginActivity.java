@@ -60,10 +60,10 @@ public class LoginActivity extends AppCompatActivity {
     public ImageView imageView;
     public TextView TextViewsignUpGit;
     public boolean cancel2=false;
-
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
     private GoogleApiClient client;
+    private static String key="a";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +103,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 UserLogin();
+
             }
         });
 
@@ -121,6 +122,11 @@ public class LoginActivity extends AppCompatActivity {
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+
+
+
+
+
     }
 
     @Override
@@ -191,11 +197,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-    protected void onCancelled() {
-
-
-    }
-
 
     @Override
     public void onStop() {
@@ -264,7 +265,7 @@ public class LoginActivity extends AppCompatActivity {
                                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                                 }
                                 else
-                                    Toast.makeText(LoginActivity.this, "Böyle bir kullanıcı bulunamadı.", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(LoginActivity.this, "Girdiğin e-posta ve şifre kayıtlarımızdakiyle eşleşmedi. Lütfen doğru girdiğinden emin ol ve tekrar dene.", Toast.LENGTH_LONG).show();
 
                                 progressDialog.dismiss();
                             }
@@ -280,13 +281,20 @@ public class LoginActivity extends AppCompatActivity {
         else
 
         {
-        Intent hata = new Intent(LoginActivity.this, hataActivity.class);
-        startActivity(hata);
+            Intent intentActivity= new Intent(this,hataActivity.class);
+            intentActivity.putExtra(key,"LoginActivity");
+            startActivity(intentActivity);
+
+        //Intent hata = new Intent(LoginActivity.this, hataActivity.class);
+        //startActivity(hata);
         }
         cancel2=false;
 
 
     }
+
+
+
 }
 
 
