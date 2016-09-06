@@ -2,7 +2,9 @@ package com.mtmi.carapp;
 
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -33,6 +35,8 @@ public class SignUp extends AppCompatActivity  {
     public EditText mPasswordView2;
     public EditText mBirthDate;
     public TextView textViewLogin;
+    public boolean cancel2 = false;
+
 
     private ProgressDialog progressDialog;
 
@@ -84,6 +88,8 @@ public class SignUp extends AppCompatActivity  {
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client2 = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+
+
     }
 
     private void registerUser()
@@ -99,84 +105,99 @@ public class SignUp extends AppCompatActivity  {
         mEmailView.setError(null);
         mPasswordView.setError(null);
         mPasswordView2.setError(null);
-        boolean cancel2=false;
-        View focusView=null;
+        View focusView = null;
 
         if (TextUtils.isEmpty(name)) {
             mPersonName.setError(getString(R.string.error_field_required));
             focusView = mPersonName;
-            cancel2 = true;}
+            cancel2 = true;
+        }
 
 
         if (TextUtils.isEmpty(mail)) {
             mEmailView.setError(getString(R.string.error_field_required));
             focusView = mEmailView;
-            cancel2 = true;}
-        else if (!isPasswordValid(mail)) {
+            cancel2 = true;
+        } else if (!isPasswordValid(mail)) {
             mEmailView.setError(getString(R.string.error_invalid_email));
             focusView = mEmailView;
-            cancel2 = true;}
+            cancel2 = true;
+        }
 
         if (TextUtils.isEmpty(sifre)) {
-                mPasswordView.setError(getString(R.string.error_field_required));
-                focusView = mPasswordView;
-                cancel2 = true;}
+            mPasswordView.setError(getString(R.string.error_field_required));
+            focusView = mPasswordView;
+            cancel2 = true;
+        }
 
         if (TextUtils.isEmpty(dogumgunu)) {
             mBirthDate.setError(getString(R.string.error_field_required));
             focusView = mBirthDate;
-            cancel2 = true;}
-
-        else if (!isPasswordValid(sifre)) {
+            cancel2 = true;
+        } else if (!isPasswordValid(sifre)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
-            cancel2 = true;}
+            cancel2 = true;
+        }
 
 
         if (TextUtils.isEmpty(sifretekrar)) {
 
             mPasswordView2.setError(getString(R.string.error_field_required));
             focusView = mPasswordView2;
-            cancel2 = true;}
-        else if (!isPasswordValid(sifre)) {
+            cancel2 = true;
+        } else if (!isPasswordValid(sifre)) {
             mPasswordView2.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView2;
-            cancel2 = true;}
+            cancel2 = true;
+        }
 
-        if(!sifre.equals(sifretekrar))
-        {
+        if (!sifre.equals(sifretekrar)) {
             mPasswordView.setError(getString(R.string.error_matching));
-            focusView=mPasswordView;
-            cancel2=true;
+            focusView = mPasswordView;
+            cancel2 = true;
         }
+        if (internetErisimi()) {
+            if (cancel2 != true)
 
-        if (cancel2 !=true)
+            {
+                progressDialog.setMessage("İşlem yapılıyor...");
+                progressDialog.show();
+                firebaseAuth.createUserWithEmailAndPassword(mail, sifre)
+                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+
+                                    progressDialog.dismiss();
+                                    Toast.makeText(SignUp.this, "Kayıt başarıyla tamamlandı!", Toast.LENGTH_SHORT).show();
+                                    Intent girisgit = new Intent(SignUp.this, MainActivity.class);
+                                    startActivity(girisgit);
+
+
+                                } else
+                                    Toast.makeText(SignUp.this, "Kayıt olma işlemi başarız. Lütfen tekrar deneyiniz.", Toast.LENGTH_SHORT).show();
+                                progressDialog.dismiss();
+
+                            }
+                        });
+            }
+        }
+        else
 
         {
-
-            progressDialog.setMessage("İşlem yapılıyor...");
-            progressDialog.show();
-
-            firebaseAuth.createUserWithEmailAndPassword(mail, sifre)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                progressDialog.dismiss();
-                                Toast.makeText(SignUp.this, "Kayıt başarıyla tamamlandı!", Toast.LENGTH_SHORT).show();
-
-
-                            } else {
-                                Toast.makeText(SignUp.this, "Kayıt olma işlemi başarız. Lütfen tekrar deneyiniz.", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
+            Intent hata = new Intent(SignUp.this, hataActivity.class);
+            startActivity(hata);
         }
 
+        cancel2 = false;
     }
 
+
+
     @Override
-    public void onStart() {
+    public void onStart()
+        {
         super.onStart();
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -224,6 +245,29 @@ public class SignUp extends AppCompatActivity  {
         //TODO: Replace this with your own logic
         return sifre.length() > 5;
     }
+
+    public boolean internetErisimi() {
+
+        ConnectivityManager conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        if (conMgr.getActiveNetworkInfo() != null
+
+                && conMgr.getActiveNetworkInfo().isAvailable()
+
+                && conMgr.getActiveNetworkInfo().isConnected()) {
+
+            return true;
+
+        } else {
+
+            return false;
+
+        }
+
+    }
+
+
+
 
 }
 

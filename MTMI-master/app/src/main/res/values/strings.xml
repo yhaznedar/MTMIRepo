@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CarApp</string>
+    <string name="app_name">OtoTakip</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">E-posta</string>
