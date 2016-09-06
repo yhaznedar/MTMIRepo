@@ -44,6 +44,7 @@
             android:name=".Hakkimizda">
         </activity>
 
+        <activity android:name=".AddingCarActivity"></activity>
     </application>
 
 </manifest>
