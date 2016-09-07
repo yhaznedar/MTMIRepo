@@ -23,81 +23,104 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:inputType="text"
         android:ems="10"
-        android:hint="Plaka"
-        android:id="@+id/edittextAd"
+        android:hint="Araç Modeli"
+        android:id="@+id/arac_model"
         android:layout_gravity="center_horizontal"
         android:fontFamily="sans-serif-light"
         android:layout_below="@+id/imgResim"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="38dp"
+        android:layout_marginTop="58dp"
         android:drawablePadding="10dp"
+        android:drawableLeft="@drawable/ic_directions_car_black_24dp"
+
+
         />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
+        android:inputType="text"
         android:ems="10"
-        android:hint="Araca Dair Bilgi"
-        android:id="@+id/edittextMail"
+        android:hint="Araç Markası"
+        android:id="@+id/arac_marka"
         android:layout_gravity="center_horizontal"
         android:fontFamily="sans-serif-light"
-        android:layout_below="@+id/edittextAd"
+        android:layout_below="@+id/arac_model"
         android:layout_alignParentStart="true"
+        android:drawableLeft="@drawable/ic_directions_car_black_24dp"
         android:drawablePadding="10dp"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
+        android:inputType="text"
         android:ems="10"
-        android:id="@+id/edittextSifre"
-        android:hint="Araca Dair Bilgi"
+        android:id="@+id/arac_plaka"
+        android:hint="Araç Plaka [TR]"
         android:layout_gravity="center_horizontal"
         android:fontFamily="sans-serif-light"
-        android:layout_below="@+id/edittextMail"
+        android:layout_below="@+id/arac_marka"
         android:layout_alignParentStart="true"
-
+        android:drawableLeft="@drawable/ic_plate_24dp"
         android:drawablePadding="10dp"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
+        android:inputType="text"
         android:ems="10"
-        android:hint="Araca Dair Bilgi"
-        android:id="@+id/edittextSifreTekrar"
+        android:hint="Aracın Trafiğe Çıkış Tarihi   "
+        android:id="@+id/arac_trafik_Trh"
         android:layout_gravity="center_horizontal"
         android:fontFamily="sans-serif-light"
-        android:layout_below="@+id/edittextSifre"
+        android:layout_below="@+id/arac_plaka"
         android:layout_alignParentStart="true"
-
-        android:drawablePadding="10dp"/>
+        android:drawablePadding="10dp"
+        android:focusable="false"
+        android:drawableLeft="@drawable/ic_calendar_24dp"
+        />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Araca Dair Bilgi"
+        android:hint="Araç Muayene Tarihi"
         android:ems="10"
-        android:id="@+id/dgmTrh"
-        android:inputType="date"
-        android:layout_below="@+id/edittextSifreTekrar"
+        android:id="@+id/arac_mua_Trh"
+        android:layout_below="@+id/arac_trafik_Trh"
         android:layout_alignParentEnd="true"
+        android:drawablePadding="10dp"
+        android:fontFamily="sans-serif-light"
+        android:focusable="false"
+        android:drawableLeft="@drawable/ic_calendar_24dp"
+        />
 
-        android:drawablePadding="10dp"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Araç Sigorta Tarihi"
+        android:ems="10"
+        android:id="@+id/arac_sig_Trh"
+        android:layout_below="@+id/arac_mua_Trh"
+        android:layout_alignParentEnd="true"
+        android:drawablePadding="10dp"
+        android:fontFamily="sans-serif-light"
+        android:focusable="false"
+        android:drawableLeft="@drawable/ic_calendar_24dp"
+
+        />
 
     <Button
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:textColor="@color/colorPrimary"
-        android:text="Araç Ekle"
-        android:id="@+id/buttonKaydet"
+        android:text="Aracı Ekle"
+        android:id="@+id/buttonAracKaydet"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="25dp"
         android:background="@drawable/roundedbutton"
         android:drawablePadding="10dp"
-        android:layout_below="@+id/dgmTrh"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/arac_sig_Trh"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="32dp" />
 
 
 </RelativeLayout>
