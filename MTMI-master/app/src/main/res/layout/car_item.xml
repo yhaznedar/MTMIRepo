@@ -1,21 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
+
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
+    android:padding="5dp"
     android:background="#F44336"
     >
+    <android.support.v7.widget.CardView
 
-    <ImageView
-        android:layout_width="150sp"
-        android:layout_height="150sp"
-        android:src="@drawable/car_pic"
-        android:id="@+id/car_pic" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_margin="15dp">
+        <ImageView
+            android:layout_width="150sp"
+            android:layout_height="150sp"
+            android:src="@drawable/car_pic"
+            android:id="@+id/car_pic" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
         <TextView
             android:layout_margin="5sp"
             android:textColor="#ffffff"
@@ -46,9 +58,10 @@
             android:layout_height="wrap_content"
             android:textSize="25sp"
             android:id="@+id/contactType" />
+        </LinearLayout>
 
 
     </LinearLayout>
 
-
+    </android.support.v7.widget.CardView>
 </LinearLayout>
