@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -37,19 +39,15 @@ import com.google.firebase.auth.FirebaseUser;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    String[] car_name;
-    TypedArray car_pic;
-    String[] status;
-    String[] contactType;
-
-    List<RowItem> rowItems;
-    ListView carListview;
 
     private FloatingActionButton fab;
 
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
     private GoogleApiClient client;
+
+    private List<Araba> arabalar;
+    private RecyclerView rv;
 
 
     @Override
@@ -93,24 +91,19 @@ public class MainActivity extends AppCompatActivity
         gelenMail.setText(user.getEmail());
         Intent intent=getIntent();
 
+        rv=(RecyclerView)findViewById(R.id.cv);
+
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        rv.setLayoutManager(llm);
+        rv.setHasFixedSize(true);
 
 
 
+        initializeData();
+        initializeAdapter();
 
-        rowItems = new ArrayList<RowItem>();
-        car_name=getResources().getStringArray(R.array.CarName);
-        car_pic=getResources().obtainTypedArray(R.array.CarPicture);
-        status= getResources().getStringArray(R.array.status);
-        contactType= getResources().getStringArray(R.array.ConcactType);
 
-        for(int i=0;i<car_name.length;i++){
-            RowItem item = new RowItem(car_name[i],car_pic.getResourceId(i,-1),status[i],contactType[i]);
-            rowItems.add(item);
-        }
 
-        carListview = (ListView) findViewById(R.id.listCar);
-        RowAdapter adapter = new RowAdapter(this,rowItems);
-        carListview.setAdapter(adapter);
 
 
 
@@ -208,6 +201,28 @@ public class MainActivity extends AppCompatActivity
         return true;
 
     }
+
+    private void initializeData(){
+        arabalar = new ArrayList<>();
+        arabalar.add(new Araba("Mercedes", "CLK", "34 G 4402"));
+        arabalar.add(new Araba("BMW", "X1", "34 GRS 36"));
+        arabalar.add(new Araba("Audi", "A6", "34 DD 7980"));
+        arabalar.add(new Araba("Renault", "Clio", "34 SR 773"));
+        arabalar.add(new Araba("Ford", "Focus", "34 P 3360"));
+        arabalar.add(new Araba("BMW", "X6", "34 S 7736"));
+        arabalar.add(new Araba("Ford", "Fiesta", "34 GR 3126"));
+    }
+
+    private void initializeAdapter(){
+        ArabaAdapter adapter = new ArabaAdapter(arabalar);
+        rv.setAdapter(adapter);
+    }
+
+
+
+
+
+
 
 
 
