@@ -40,12 +40,11 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
+        <activity android:name=".Hakkimizda"></activity>
         <activity
-            android:name=".Hakkimizda">
-        </activity>
-
-        <activity android:name=".AddingCarActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:name=".AddingCarActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".RecyclerView"></activity>
     </application>
 
 </manifest>
