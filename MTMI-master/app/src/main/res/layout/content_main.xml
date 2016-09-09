@@ -18,6 +18,9 @@
         android:layout_height="?attr/actionBarSize"
         android:background="#0097A7"
         app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent" android:layout_height="match_parent"
         android:layout_marginTop="?attr/actionBarSize"
@@ -31,6 +34,8 @@
             android:padding="5dp">
 
         </android.support.v7.widget.RecyclerView>
+
+
 
     </LinearLayout>
 
