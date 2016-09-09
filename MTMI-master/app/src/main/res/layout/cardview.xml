@@ -1,0 +1,66 @@
+<android.support.v7.widget.CardView android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    app:cardCornerRadius="4dp"
+    app:cardElevation="3dp"
+    app:cardUseCompatPadding="true"
+
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <FrameLayout
+        android:background="@color/colorThird"
+        android:layout_width="6dp"
+        android:layout_height="match_parent"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:id="@+id/arac_foto"
+            android:src="@drawable/car_pic"/>
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/arac_marka"
+            android:layout_marginRight="16dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:hint="Marka"
+            android:textSize="20dp"
+            android:textColor="@color/colorTextt"
+
+            />
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/arac_model"
+            android:layout_below="@+id/arac_marka"
+            android:layout_alignStart="@+id/arac_marka"
+            android:hint="Model"
+            android:textSize="18dp"
+            android:fontFamily="sans-serif-light"
+            android:textColor="@color/colorTextt"
+            />
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/arac_plaka"
+            android:textColor="@color/colorTextt"
+            android:hint="Plaka"
+            android:layout_below="@+id/arac_model"
+            android:layout_alignStart="@+id/arac_model"
+            android:textSize="15dp"
+            android:fontFamily="sans-serif-light"/>
+
+
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

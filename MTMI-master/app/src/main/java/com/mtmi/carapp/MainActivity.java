@@ -1,6 +1,7 @@
 package com.mtmi.carapp;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.TypedArray;
@@ -9,6 +10,11 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -37,13 +43,6 @@ import com.google.firebase.auth.FirebaseUser;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    String[] car_name;
-    TypedArray car_pic;
-    String[] status;
-    String[] contactType;
-
-    List<RowItem> rowItems;
-    ListView carListview;
 
     private FloatingActionButton fab;
 
@@ -51,18 +50,25 @@ public class MainActivity extends AppCompatActivity
     private ProgressDialog progressDialog;
     private GoogleApiClient client;
 
+    private List<Araba> arabalar;
+    private RecyclerView rv;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+
 
         firebaseAuth = FirebaseAuth.getInstance();
 
         if(firebaseAuth.getCurrentUser()==null){
-            finish();
+
             startActivity(new Intent(this,LoginActivity.class));
+            finish();
         }
+
+        setContentView(R.layout.activity_main);
 
 
         fab= (FloatingActionButton) findViewById(R.id.eklebutonu);
@@ -93,25 +99,41 @@ public class MainActivity extends AppCompatActivity
         gelenMail.setText(user.getEmail());
         Intent intent=getIntent();
 
+        rv=(RecyclerView)findViewById(R.id.cv);
+
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        rv.setLayoutManager(llm);
+        rv.setHasFixedSize(true);
 
 
 
+        initializeData();
+        initializeAdapter();
 
-        rowItems = new ArrayList<RowItem>();
-        car_name=getResources().getStringArray(R.array.CarName);
-        car_pic=getResources().obtainTypedArray(R.array.CarPicture);
-        status= getResources().getStringArray(R.array.status);
-        contactType= getResources().getStringArray(R.array.ConcactType);
+        ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) { //SWIPE OLAYI
 
-        for(int i=0;i<car_name.length;i++){
-            RowItem item = new RowItem(car_name[i],car_pic.getResourceId(i,-1),status[i],contactType[i]);
-            rowItems.add(item);
-        }
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
 
-        carListview = (ListView) findViewById(R.id.listCar);
-        RowAdapter adapter = new RowAdapter(this,rowItems);
-        carListview.setAdapter(adapter);
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
+                //Remove swiped item from list and notify the RecyclerView
+            }
+        };
 
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleItemTouchCallback);
+        itemTouchHelper.attachToRecyclerView(rv);
+
+
+       /* mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {  //YENİLE OLAYI
+            @Override
+            public void onRefresh() {
+                // Refresh items
+                refreshItems();
+            }
+        });*/
 
 
     }
@@ -208,6 +230,44 @@ public class MainActivity extends AppCompatActivity
         return true;
 
     }
+
+    private void initializeData(){
+        arabalar = new ArrayList<>();
+        arabalar.add(new Araba("Mercedes", "CLK", "34 G 4402"));
+        arabalar.add(new Araba("BMW", "X1", "34 GRS 36"));
+        arabalar.add(new Araba("Audi", "A6", "34 DD 7980"));
+        arabalar.add(new Araba("Renault", "Clio", "34 SR 773"));
+        arabalar.add(new Araba("Ford", "Focus", "34 P 3360"));
+        arabalar.add(new Araba("BMW", "X6", "34 S 7736"));
+        arabalar.add(new Araba("Ford", "Fiesta", "34 GR 3126"));
+    }
+
+    private void initializeAdapter(){
+        ArabaAdapter adapter = new ArabaAdapter(arabalar);
+        rv.setAdapter(adapter);
+    }
+
+
+
+    /*private void refreshItems() {
+        // Load items
+        // ...
+
+        // Load complete
+        onItemsLoadComplete();
+    }
+
+    private void onItemsLoadComplete() {
+        // Update the adapter and notify data set changed
+        // ...
+
+        // Stop refresh animation
+        mSwipeRefreshLayout.setRefreshing(false);
+    }*/
+
+
+
+
 
 
 

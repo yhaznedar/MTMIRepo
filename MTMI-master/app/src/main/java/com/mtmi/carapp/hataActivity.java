@@ -34,18 +34,12 @@ public class hataActivity extends AppCompatActivity {
                 if (internetErisimi())
 
                 {
-                    Intent intentActivity=getIntent();
 
-                    if(intentActivity.getStringExtra("a")=="LoginActivity")
-                    {
+
                         Intent log = new Intent(hataActivity.this, LoginActivity.class);
                         startActivity(log);
-                    }
-                    else {
 
-                        Intent sign = new Intent(hataActivity.this, SignUp.class);
-                        startActivity(sign);
-                    }
+
 
                 }
                 else

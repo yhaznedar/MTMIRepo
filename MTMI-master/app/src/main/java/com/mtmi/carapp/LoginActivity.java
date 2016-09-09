@@ -64,21 +64,23 @@ public class LoginActivity extends AppCompatActivity {
     private ProgressDialog progressDialog;
     private GoogleApiClient client;
     private static String key="a";
-
+    private TextView mSignUpView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-
         firebaseAuth=FirebaseAuth.getInstance();
+
 
         if(firebaseAuth.getCurrentUser() != null){
             //profile activity here
-            finish();
+
             startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            finish();
         }
+
+        setContentView(R.layout.activity_login);
 
         EmailView = (EditText) findViewById(R.id.email);
         imageView = (ImageView) findViewById(R.id.imageView);
@@ -108,13 +110,13 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-        TextView mSignUpView = (TextView) findViewById(R.id.signUpGit);
+         mSignUpView= (TextView) findViewById(R.id.signUpGit);
         mSignUpView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Intent uyeolagit = new Intent(LoginActivity.this, SignUp.class);
-                startActivity(uyeolagit);
+                Intent giti = new Intent(LoginActivity.this, SignUp.class);
+                startActivity(giti);
             }
         });
 
@@ -281,12 +283,10 @@ public class LoginActivity extends AppCompatActivity {
         else
 
         {
-            Intent intentActivity= new Intent(this,hataActivity.class);
-            intentActivity.putExtra(key,"LoginActivity");
-            startActivity(intentActivity);
 
-        //Intent hata = new Intent(LoginActivity.this, hataActivity.class);
-        //startActivity(hata);
+
+        Intent hata = new Intent(LoginActivity.this, hataActivity.class);
+        startActivity(hata);
         }
         cancel2=false;
 
