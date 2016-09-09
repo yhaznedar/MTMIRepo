@@ -25,7 +25,8 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name=".hataActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -44,7 +45,7 @@
         <activity
             android:name=".AddingCarActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".RecyclerView"></activity>
+
     </application>
 
 </manifest>

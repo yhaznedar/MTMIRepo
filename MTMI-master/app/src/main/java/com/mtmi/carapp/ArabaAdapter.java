@@ -58,6 +58,9 @@ import java.util.List;
             varacModel = (TextView)  v.findViewById(R.id.arac_model);
             varacPlaka = (TextView)  v.findViewById(R.id.arac_plaka);
 
+
+
+
         }
     }
 

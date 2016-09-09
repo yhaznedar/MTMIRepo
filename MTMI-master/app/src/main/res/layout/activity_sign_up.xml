@@ -11,6 +11,7 @@
     tools:context="com.mtmi.carapp.SignUp"
     android:background="@drawable/naa">
     <!-- Kayit Ekrani -->
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="153dp"
@@ -112,4 +113,5 @@
         android:layout_marginTop="22dp"
         android:layout_marginBottom="2dp"
         android:layout_below="@+id/buttonKaydet"/>
+
 </RelativeLayout>

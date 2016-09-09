@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:background="#B0BEC5"
+
     >
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -17,20 +17,28 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="#0097A7"
-        app:popupTheme="@style/AppTheme.PopupOverlay" />
+        app:popupTheme="@style/AppTheme.NoActionBar" />
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent" android:layout_height="match_parent"
         android:layout_marginTop="?attr/actionBarSize"
         android:weightSum="1"
         >
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
 
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/cv"
-            android:padding="5dp">
+            android:elevation="4dp"
+            >
+            </android.support.v7.widget.RecyclerView>
 
-        </android.support.v7.widget.RecyclerView>
+        </android.support.v4.widget.SwipeRefreshLayout>
 
     </LinearLayout>
 
@@ -48,4 +56,5 @@
         android:clickable="true"
         android:layout_gravity="bottom|end"
         />
+
 </android.support.design.widget.CoordinatorLayout>
